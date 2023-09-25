@@ -9,7 +9,6 @@ namespace qtmvvm
   {
   public:
     virtual ~IModel() {}
-    virtual void initState() = 0;
   };
 } // namespace qtmvvm
 
