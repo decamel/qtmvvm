@@ -9,14 +9,14 @@ namespace qtmvvm
   class IViewModel
   {
   protected:
-    IView *view_;
+    View *view_;
 
   public:
     virtual ~IViewModel() = default;
 
-    void setView(IView *view) override
+    void setView(View *view) override
     {
-      IView *viewObj = dynamic_cast<IView *>(view);
+      View *viewObj = dynamic_cast<View *>(view);
       if (viewObj == 0)
       {
         throw std::runtime_error("Invalid type of view passed into WidgetModel.setView method");
