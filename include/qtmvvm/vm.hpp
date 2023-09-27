@@ -19,12 +19,15 @@ namespace qtmvvm
   template <class IView, class Model>
   class ViewModel : public IViewModel
   {
+  public:
+    using ModelPtr = std::shared_ptr<Model>;
+
   protected:
     IView *view_;
-    std::shared_ptr<Model> model_;
+    ModelPtr model_;
 
   public:
-    ViewModel(std::shared_ptr<Model> a_model) : m_model(a_model) {}
+    ViewModel(ModelPtr a_model) : m_model(a_model) {}
 
   public:
     void setView(IView *view)
@@ -50,12 +53,13 @@ namespace qtmvvm
 
     /**
      * @brief Refreshes view connected with this <WidgetModel>
-     * 
-     * Must call super 
+     *
+     * Must call super
      *
      * @param view <IView> which should be refreshed
      */
-    virtual void refreshView() {
+    virtual void refreshView()
+    {
       QCoreApplication::processEvents();
     };
   };
