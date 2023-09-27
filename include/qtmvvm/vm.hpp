@@ -30,7 +30,7 @@ namespace qtmvvm
     ViewModel(ModelPtr a_model) : model_(a_model) {}
 
   public:
-    void setView(QWidget *view) override
+    virtual void setView(QWidget *view) override
     {
       IView *viewObj = dynamic_cast<IView *>(view);
       if (viewObj == 0)
