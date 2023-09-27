@@ -12,7 +12,7 @@ namespace qtmvvm
   public:
     virtual ~IViewModel() = default;
 
-    virtual setView(QWidget *) = 0;
+    virtual void setView(QWidget *) = 0;
   };
 } // namespace 
 
