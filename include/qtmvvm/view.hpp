@@ -23,7 +23,6 @@ namespace qtmvvm
     IView(VmFactory pfactory) : p_vm(pfactory())
     {
       assert(p_vm != nullptr);
-      p_vm->setView(this);
     }
     virtual ~IView() = default;
 

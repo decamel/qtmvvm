@@ -3,7 +3,7 @@
 #if !defined(QTMVVM_VM_IFACE_H)
 #define QTMVVM_VM_IFACE_H
 
-#include "view.hpp"
+#include <QWidget>
 
 namespace qtmvvm
 {
@@ -12,7 +12,7 @@ namespace qtmvvm
   public:
     virtual ~IViewModel() = default;
 
-    virtual setView(IView *) = 0;
+    virtual setView(QWidget *) = 0;
   };
 } // namespace 
 
