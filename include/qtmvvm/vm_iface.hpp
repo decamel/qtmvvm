@@ -5,7 +5,7 @@
 
 namespace qtmvvm
 {
-  template<View>
+  template<class View>
   class IViewModel
   {
   public:
