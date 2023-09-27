@@ -23,8 +23,6 @@ namespace qtmvvm
       }
 
       view_ = viewObj;
-      connectView();
-      refreshView();
     }
   };
 } // namespace
