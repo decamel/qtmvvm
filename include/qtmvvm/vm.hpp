@@ -17,7 +17,7 @@
 namespace qtmvvm
 {
   template <class IView, class Model>
-  class ViewModel : public IViewModel<IView>
+  class ViewModel : public IViewModel
   {
   public:
     using ModelPtr = std::shared_ptr<Model>;
