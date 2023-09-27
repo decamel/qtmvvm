@@ -5,10 +5,13 @@
 
 namespace qtmvvm
 {
+  template<View>
   class IViewModel
   {
   public:
     virtual ~IViewModel() = default;
+
+    virtual setView(View *) = 0;
   };
 } // namespace 
 
