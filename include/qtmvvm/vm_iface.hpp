@@ -14,7 +14,7 @@ namespace qtmvvm
   public:
     virtual ~IViewModel() = default;
 
-    void setView(View *view) override
+    void setView(View *view)
     {
       View *viewObj = dynamic_cast<View *>(view);
       if (viewObj == 0)
