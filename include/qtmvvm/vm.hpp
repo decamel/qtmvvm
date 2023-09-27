@@ -22,26 +22,10 @@ namespace qtmvvm
   public:
     using ModelPtr = std::shared_ptr<Model>;
 
-  protected:
-    IView *view_;
     ModelPtr model_;
 
   public:
     ViewModel(ModelPtr a_model) : model_(a_model) {}
-
-  public:
-    virtual void setView(IView *view) override
-    {
-      IView *viewObj = dynamic_cast<IView *>(view);
-      if (viewObj == 0)
-      {
-        throw std::runtime_error("Invalid type of view passed into WidgetModel.setView method");
-      }
-
-      view_ = viewObj;
-      connectView();
-      refreshView();
-    }
 
   protected:
     /**

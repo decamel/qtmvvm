@@ -5,14 +5,28 @@
 
 namespace qtmvvm
 {
-  template<class View>
+  template <class View>
   class IViewModel
   {
+  protected:
+    IView *view_;
+
   public:
     virtual ~IViewModel() = default;
 
-    virtual void setView(View *) = 0;
+    void setView(IView *view) override
+    {
+      IView *viewObj = dynamic_cast<IView *>(view);
+      if (viewObj == 0)
+      {
+        throw std::runtime_error("Invalid type of view passed into WidgetModel.setView method");
+      }
+
+      view_ = viewObj;
+      connectView();
+      refreshView();
+    }
   };
-} // namespace 
+} // namespace
 
 #endif // QTMVVM_VM_IFACE_H
