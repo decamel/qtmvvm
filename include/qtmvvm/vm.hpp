@@ -32,13 +32,13 @@ namespace qtmvvm
   public:
     void setView(QWidget *view) override
     {
-      QObject *viewObj = qobject_cast<QObject *>(view);
+      IView *viewObj = dynamic_cast<IView *>(view);
       if (viewObj == 0)
       {
         throw std::runtime_error("Invalid type of view passed into WidgetModel.setView method");
       }
 
-      view_ = view;
+      view_ = viewObj;
       connectView();
       refreshView();
     }
