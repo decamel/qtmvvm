@@ -20,56 +20,44 @@ namespace qtmvvm
   class ViewModel : public IViewModel
   {
   protected:
-    QList<IView *> m_views;
-    std::unique_ptr<Model> m_model;
+    IView *view_;
+    std::shared_ptr<Model> model_;
 
   public:
-    ViewModel(std::unique_ptr<Model> a_model) : m_model(std::move(a_model)) {}
+    ViewModel(std::shared_ptr<Model> a_model) : m_model(a_model) {}
 
   public:
-    void addView(IView *view)
+    void setView(IView *view)
     {
-      if (m_views.contains(view))
-      {
-        return;
-      }
       QObject *viewObj = qobject_cast<QObject *>(view);
       if (viewObj == 0)
       {
-        throw std::runtime_error("Invalid type of view passed into WidgetModel.addView method");
+        throw std::runtime_error("Invalid type of view passed into WidgetModel.setView method");
       }
 
-      connectView(view);
-      refreshView(view);
-      m_views.append(view);
+      view_ = view;
+      connectView();
+      refreshView();
     }
 
-  protected:
-    /**
-     * @brief Refresh views connected with this <WidgetModel>
-     */
-    void refreshView()
-    {
-      for (typename QList<IView *>::const_interator it = m_views.constBegin(); it != m_views.constEnd(); ++it)
-      {
-        refreshView(*it);
-        QCoreApplication::processEvents();
-      }
-    }
   protected:
     /**
      * @brief Connects necessary signals and slots of <IView> and this <WidgetModel>
-     * 
+     *
      * @param view Connectable view
      */
-    virtual void connectView(IView *view) const = 0;
+    virtual void connectView() const {};
 
     /**
-     * @brief Refreshes concrete view connected with this <WidgetModel>
+     * @brief Refreshes view connected with this <WidgetModel>
      * 
+     * Must call super 
+     *
      * @param view <IView> which should be refreshed
      */
-    virtual void refreshView(IView *view) = 0;
+    virtual void refreshView() {
+      QCoreApplication::processEvents();
+    };
   };
 } // namespace qtmvvm
 

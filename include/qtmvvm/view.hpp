@@ -12,7 +12,7 @@ namespace qtmvvm
   class IView
   {
   public:
-    using VmFactory = std::function<std::shared_ptr<VM>()>;
+    using VmFactory = std::function<std::unique_ptr<VM>()>;
 
   public:
     /**
@@ -23,12 +23,13 @@ namespace qtmvvm
     IView(VmFactory pfactory) : p_vm(pfactory())
     {
       assert(p_vm != nullptr);
+      p_vm->setView(this);
     }
     virtual ~IView() = default;
 
   protected:
     /// @brief Pointer to the parent widget model
-    std::shared_ptr<VM> p_vm;
+    std::unique_ptr<VM> p_vm;
   };
 } // namespace qtmvvm
 
