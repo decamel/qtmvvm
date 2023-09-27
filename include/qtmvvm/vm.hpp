@@ -27,7 +27,7 @@ namespace qtmvvm
     ModelPtr model_;
 
   public:
-    ViewModel(ModelPtr a_model) : m_model(a_model) {}
+    ViewModel(ModelPtr a_model) : model_(a_model) {}
 
   public:
     void setView(IView *view)
