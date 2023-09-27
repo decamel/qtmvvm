@@ -17,7 +17,7 @@
 namespace qtmvvm
 {
   template <class IView, class Model>
-  class ViewModel : public IViewModel
+  class ViewModel : public IViewModel<IView>
   {
   public:
     using ModelPtr = std::shared_ptr<Model>;
@@ -30,7 +30,7 @@ namespace qtmvvm
     ViewModel(ModelPtr a_model) : model_(a_model) {}
 
   public:
-    virtual void setView(QWidget *view) override
+    virtual void setView(IView *view) override
     {
       IView *viewObj = dynamic_cast<IView *>(view);
       if (viewObj == 0)

@@ -3,16 +3,15 @@
 #if !defined(QTMVVM_VM_IFACE_H)
 #define QTMVVM_VM_IFACE_H
 
-#include <QWidget>
-
 namespace qtmvvm
 {
+  template<View>
   class IViewModel
   {
   public:
     virtual ~IViewModel() = default;
 
-    virtual void setView(QWidget *) = 0;
+    virtual void setView(View *) = 0;
   };
 } // namespace 
 
